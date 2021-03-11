@@ -110,4 +110,13 @@ form.addEventListener('submit', function(e) {
 
 })
 
+const confrimCheckbox = document.querySelector('[data-js="confirm"]');
+const sendBtn = document.querySelector('[data-js="submit"]');
+
+confrimCheckbox.addEventListener('change',function() {
+  this.checked
+  ? sendBtn.disabled = false
+  : sendBtn.disabled = true
+})
+
 })

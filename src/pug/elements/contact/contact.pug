@@ -89,12 +89,12 @@ section.contact.section
         textarea(name="message" placeholder="Ваше сообщение").contact__form-input.contact__form-input_textarea
 
         label.contact__form-checkbox
-          input(type="checkbox", name="confirm").contact__form-checkbox-input
+          input(type="checkbox", name="confirm" data-js="confirm").contact__form-checkbox-input
           span.contact__form-checkbox-val
             | Я подтверждаю свое согласие с политикой в отношении
             a(href="#!").contact__form-checkbox-link обработки персональных данных
 
-        button(type="submit").btn.btn_red.contact__form-submit Задать вопрос
+        button(type="submit" data-js="submit" disabled).btn.btn_red.contact__form-submit Задать вопрос
 
   .contact__map#map
 
