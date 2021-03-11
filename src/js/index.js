@@ -1,7 +1,11 @@
 // Main js file
 // see more: https://github.com/vedees/webpack-template/blob/master/README.md#import-js-files
 
+import maskPhone from './maskPhone'
+
 document.addEventListener('DOMContentLoaded', () => {
+
+maskPhone('[data-mask="phone"]');
 
 ymaps.ready(init);
 
@@ -84,5 +88,26 @@ function toggleMenu () {
   document.body.classList.toggle('modal-open');
 
 }
+
+const form = document.querySelector('[data-form="contact"]');
+const fields = document.querySelectorAll('[data-js-validators="required"]');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  let status = true;
+
+  fields.forEach(field => {
+
+    if (field.nextElementSibling) field.nextElementSibling.remove();
+
+    if(field.value.length === 0) {
+      status = false;
+      field.insertAdjacentHTML('afterEnd', '<span class="contact__form-error">Заполните поле!</span>')
+    }
+  })
+
+  status && console.log('submit');
+
+})
 
 })

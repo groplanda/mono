@@ -78,13 +78,13 @@ section.contact.section
         p.contact__text Юридический адрес: 400080, Волгоградская обл. г. Волгоград  <br>ул. Командира Рудь,14А, офис 13
         p.contact__text Почтовый адрес: 400080, Волгоградская обл. г. Волгоград  <br>ул. Командира Рудь, 14А, офис 13
 
-      form.contact__form
+      form.contact__form(data-form="contact")
         .contact__form-title Остались вопросы?
         .contact__form-row
           .contact__form-group
-            input(type="text" name="name" placeholder="Ваше имя").contact__form-input
+            input(type="text" name="name" placeholder="Ваше имя" data-js-validators="required").contact__form-input
           .contact__form-group
-            input(type="tel" name="phone" placeholder="Ваш телефон").contact__form-input
+            input(type="tel" name="phone" placeholder="Ваш телефон" data-mask="phone" data-js-validators="required").contact__form-input
 
         textarea(name="message" placeholder="Ваше сообщение").contact__form-input.contact__form-input_textarea
 

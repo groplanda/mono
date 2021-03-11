@@ -192,6 +192,12 @@
     }
   }
 
+  &__form-error {
+    color: $red-color;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
   &__form-checkbox {
     min-height: 20px;
     display: flex;
