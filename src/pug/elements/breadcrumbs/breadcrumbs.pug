@@ -1,0 +1,8 @@
+mixin breadcrumbs(links)
+  .breadcrumbs
+    each link, index in links
+      if index < links.length - 1
+        a(href="#!").breadcrumbs__link= link
+        span.breadcrumbs__divider
+      else
+        span.breadcrumbs__link.breadcrumbs__link_current= link

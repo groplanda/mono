@@ -4,11 +4,44 @@
 
 @import 'mixins';
 
+@font-face {
+  font-family: 'Golos';
+  src: local('Golos Text Regular'), local('Golos-Text-Regular'),
+      url('/src/assets/fonts/Golos/GolosText-Regular.woff2') format('woff2'),
+      url('/src/assets/fonts/Golos/GolosText-Regular.woff') format('woff'),
+      url('/src/assets/fonts/Golos/GolosText-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Golos';
+  src: local('Golos Text Medium'), local('Golos-Text-Medium'),
+      url('/src/assets/fonts/Golos/GolosText-Medium.woff2') format('woff2'),
+      url('/src/assets/fonts/Golos/GolosText-Medium.woff') format('woff'),
+      url('/src/assets/fonts/Golos/GolosText-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Road Radio';
+  src: local('Road Radio Regular'), local('Road-Radio-Regular'),
+      url('/src/assets/fonts/RoadRadio/RoadRadio.woff2') format('woff2'),
+      url('/src/assets/fonts/RoadRadio/RoadRadio.woff') format('woff'),
+      url('/src/assets/fonts/RoadRadio/RoadRadio.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 /*
   One of the ways:
   1. handle method,
   2. use mixin;
 */
+
+/// НЕ РАБОТАЕТ ИЗ ПРИМЕРА https://github.com/vedees/webpack-template/issues/24
+
 
 // 1. Example handle method (without mixin):
 

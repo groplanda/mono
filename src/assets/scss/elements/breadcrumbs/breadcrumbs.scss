@@ -1,0 +1,38 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+
+  @media(max-width: 991px) {
+    margin-bottom: 18px;
+  }
+
+  @media(max-width: 767px) {
+    margin-bottom: 16px;
+  }
+
+  &__divider {
+    width: 1px;
+    height: 1px;
+    background: $grey-color;
+    border-radius: 1px;
+    margin-right: 13px;
+  }
+
+  &__link {
+    color: $grey-color;
+    font-size: 12px;
+    line-height: 14px;
+    margin-right: 13px;
+
+    &_current {
+      color: #C9C9CF;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+  }
+}

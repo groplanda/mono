@@ -4,30 +4,16 @@
 @import 'utils/fonts';
 @import 'utils/reset';
 
-html {
-  line-height: $mainLineHeight;
-  font-size: $mainFontSize;
-  color: $mainFontColor;
-  height: 100%;
-  @media screen and (max-width: $desktopWidth) {
-    font-size: 16px;
-  }
-  @media screen and (max-width: $tableWidth) {
-    font-size: 15px;
-  }
-  @media screen and (max-width: $phoneWidth) {
-    font-size: 14px;
-  }
-}
-
 body {
   margin: 0;
   padding: 0;
   font-family: $mainFont;
-  font-size: $mainFontSize;
-  font-weight: $mainFontWeight;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  &.modal-open {
+    overflow: hidden;
+  }
 }
 
 *,
@@ -47,6 +33,7 @@ h6 {
 
 a {
   text-decoration: none;
+  transition: color .2s ease;
 }
 
 ul,
@@ -56,51 +43,71 @@ li {
   list-style-type: none;
 }
 
-section,
-.section {
-  position: relative;
-  padding: 40px 0;
-  @media screen and (max-width: $smDesktopWidth) {
-    padding: 36px 0;
-  }
-  @media screen and (max-width: $tableWidth) {
-    padding: 28px 0;
-  }
-  @media screen and (max-width: $phoneWidth) {
-    padding: 20px 0;
-  }
+input,
+textarea,
+select,
+button {
+  font-family: $mainFont;
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  min-height: 100vh;
-  min-width: 100vh;
-}
-
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.container {
+.wrap {
   width: 100%;
-  flex: 0 0 auto;
-  position: relative;
+  max-width: 1310px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 15px;
   margin: 0 auto;
-  max-width: $desktopWidth;
-  @media screen and (max-width: $smDesktopWidth) {
-    max-width: $tableWidth;
+
+  @media(max-width: 1309px) {
+    max-width: 1199px;
   }
-  @media screen and (max-width: $tableWidth) {
-    max-width: $phoneWidth;
+  @media(max-width: 1199px) {
+    max-width: 991px;
   }
-  @media screen and (max-width: $phoneWidth) {
-    max-width: $smPhoneWidth;
+  @media(max-width: 991px) {
+    max-width: 768px;
+  }
+  @media(max-width: 767px) {
+    max-width: 100%;
+  }
+}
+
+.btn {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-family: $secondFont;
+  line-height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 190px;
+  height: 52px;
+  border: 2px solid;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all .2s ease;
+
+  &_red {
+    border-color: $red-color;
+    background: $red-color;
+
+    &:hover, &:focus, &:active {
+      border-color: darken($color: $red-color, $amount: 5%);
+      background: darken($color: $red-color, $amount: 5%)
+    }
+  }
+  &_grey {
+    border-color: #494950;
+
+    &:hover, &:focus, &:active {
+      border-color: $grey-color;
+    }
   }
 }
 
 // Modules:
-// example: @import "modules/my-module.scss";
+@import "./elements/header/header.scss";
+@import "./elements/breadcrumbs/breadcrumbs.scss";
+@import "./elements/contact/contact.scss";
+@import "./elements/footer/footer.scss";

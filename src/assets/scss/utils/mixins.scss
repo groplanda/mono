@@ -19,18 +19,26 @@
 }
 
 // placeholder helper
-@mixin placeholder {
-  ::-webkit-input-placeholder {
-    @content;
+@mixin placeholder($color) {
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1;
   }
-  :-moz-placeholder {
-    @content;
+  &::-webkit-input-placeholder {
+    color: $color;
+    opacity: 1;
   }
-  ::-moz-placeholder {
-    @content;
+  &:-ms-input-placeholder {
+    color: $color;
+    opacity: 1;
   }
-  :-ms-input-placeholder {
-    @content;
+  &::-ms-input-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+  &::placeholder {
+    color: $color;
+    opacity: 1;
   }
 }
 

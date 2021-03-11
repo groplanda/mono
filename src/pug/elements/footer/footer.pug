@@ -1,0 +1,25 @@
+-
+  let footer_links = ['О Компании','Партнеры','Доставка','Оплата','Обмен и возврат','Контакты','Распродажа','Сервис','Новости']
+
+footer.footer.section
+  .footer__top
+    .wrap.footer__wrap
+      .footer__column.footer__column_left
+        .footer__category
+          each category in ['Упаковочное оборудование', 'Пленки', 'Пакеты', 'Прочие материалы']
+            a(href="#!").footer__category-link= category
+
+        .footer__nav
+          each item in footer_links
+            a(href="#!").footer__nav-link= item
+
+      .footer__column.footer__column_right
+        .footer__group
+          each phone in ['+7 (499) 136-17-18', '+7 (903) 467-98-51']
+            a(href=`tel:${phone}`).footer__phone= phone
+        button(type="button").btn.btn_grey Обратный звонок
+        a(href="mailto:info@monevac.ru").footer__email info@monevac.ru
+        p.footer__address Москва ул. Дербеневская, д. 1, стр. 1, подъезд 44, офис 6 (станция метро "Павелецкая")
+  .footer__bottom
+    .wrap.footer__wrap
+      p.footer__copyright © Моневак 2020 | Все права защищены

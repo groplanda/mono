@@ -1,0 +1,129 @@
+-
+  let contacts = [
+    {
+      title: 'МОСКВА',
+      phones: ['+7 (499) 136-17-18', '+7 (903) 467-98-51'],
+      address: '115114, ул. Дербеневская, д. 1, стр. 1, подъезд 44, офис 6 (станция метро "Павелецкая")',
+      open: 'Режим работы: c 10:00 до 18:00',
+    },
+    {
+      title: 'Волгоград',
+      phones: ['+7 (8442) 65-08-88', '+7 (8442) 65-08-80'],
+      address: '400080, ул. Командира Рудь, 14А',
+      open: 'Режим работы: c 08:00 до 17:00',
+    },
+    {
+      title: 'КРАСНОДАР',
+      phones: ['+7 (861) 292-71-88', '+7 (903) 467-98-51'],
+      address: '350015, ул. Митрофана Седина, 176',
+      open: 'Режим работы: c 08:00 до 17:00',
+    },
+    {
+      title: 'Саратов',
+      phones: ['+7 (927) 626-00-50', '+7 (903) 467-98-51'],
+      address: '410080, пр-т Строителей, 1',
+      open: 'Режим работы: c 10:00 до 18:00',
+    },
+    {
+      title: 'воронеж',
+      phones: ['+7 (473) 229-63-78', '+7 (903) 467-98-51'],
+      address: '394030, ул. Комиссаржевской, 10',
+      open: 'Режим работы: c 10:00 до 18:00',
+    },
+    {
+      title: 'ЕРЕВАН',
+      phones: ['+374 91 21 90 69', '+374 60 50 90 69'],
+      address: 'Район Аван 4, дом 2',
+      open: 'Режим работы: c 10:00 до 18:00',
+    },
+    {
+      title: 'НОВОСИБИРСК',
+      type: 'full',
+      phones: ['+7 (383) 20-62-461;', '+7 (383) 20-62-711', '+7 (903) 467-98-51'],
+      fax: ['+7 (383) 20-62-209;', '+7 (383) 20-62-210'],
+      address: '630039, ул. Никитина 116, к.3',
+      open: 'Режим работы: c 10:00 до 18:00',
+    },
+  ]
+
+section.contact.section
+  .contact__header
+    include ../breadcrumbs/breadcrumbs
+    +breadcrumbs(['Главная','Контакты'])
+
+    .contact__header-divider
+
+    h1.contact__title Контакты
+
+  .contact__body
+    .contact__wrap.wrap
+      .contact__content
+        a(href="tel:89034679851").contact__phone 8 (903) 467 98 51
+        a(href="mailto:info@monevac.ru").contact__email info@monevac.ru
+        .contact__info
+          p.contact__descr Полное наименование: <br> Общество с ограниченной ответственностью «МОНЕВАК» <br> Сокращенное наименование: ООО «МОНЕВАК»
+
+        p.contact__text ИНН: 3448050610
+        p.contact__text КПП: 344801001
+        p.contact__text ОКПО: 67354285
+        p.contact__text ОКАТО: 18401000000
+        p.contact__text ОГРН: 1103461002480
+        p.contact__text Код по ОКВЭД: 51.70
+        p.contact__text
+        p.contact__text Банк: Филиала «Ростовский» ОАО «Альфа-Банк» г Ростов на Дону
+        p.contact__text БИК: 046015207
+        p.contact__text к/с: 30101810500000000207
+        p.contact__text р/с: 40702810926090000003
+        p.contact__text
+        p.contact__text Юридический адрес: 400080, Волгоградская обл. г. Волгоград  <br>ул. Командира Рудь,14А, офис 13
+        p.contact__text Почтовый адрес: 400080, Волгоградская обл. г. Волгоград  <br>ул. Командира Рудь, 14А, офис 13
+
+      form.contact__form
+        .contact__form-title Остались вопросы?
+        .contact__form-row
+          .contact__form-group
+            input(type="text" name="name" placeholder="Ваше имя").contact__form-input
+          .contact__form-group
+            input(type="tel" name="phone" placeholder="Ваш телефон").contact__form-input
+
+        textarea(name="message" placeholder="Ваше сообщение").contact__form-input.contact__form-input_textarea
+
+        label.contact__form-checkbox
+          input(type="checkbox", name="confirm").contact__form-checkbox-input
+          span.contact__form-checkbox-val
+            | Я подтверждаю свое согласие с политикой в отношении
+            a(href="#!").contact__form-checkbox-link обработки персональных данных
+
+        button(type="submit").btn.btn_red.contact__form-submit Задать вопрос
+
+  .contact__map#map
+
+
+  .contact__wrap.wrap
+    .contact__list
+      each elem in contacts
+        if elem.type == 'full'
+          .contact__item.contact__item_full
+            .contact__item-title= elem.title
+            .contact__item-body
+              each phone in elem.phones
+                a(href=`tel:${phone}`).contact__item-phone= phone
+              .contact__item-fax
+                span.contact__item-phone Факс:
+                each fax in elem.fax
+                  span.contact__item-phone= fax
+              p.contact__item-adress= elem.address
+              a(href="#!").contact__item-link Проложить маршрут
+
+            span.contact__item-open= elem.open
+        else
+          .contact__item
+            .contact__item-title= elem.title
+            .contact__item-body
+              each phone in elem.phones
+                a(href=`tel:${phone}`).contact__item-phone= phone
+              p.contact__item-adress= elem.address
+              a(href="#!").contact__item-link Проложить маршрут
+
+            span.contact__item-open= elem.open
+

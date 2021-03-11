@@ -6,7 +6,9 @@ const fs = require('fs')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { VueLoaderPlugin } = require('vue-loader')
+const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin')
+
+// const { VueLoaderPlugin } = require('vue-loader')
 
 // Main const
 const PATHS = {
@@ -17,10 +19,8 @@ const PATHS = {
 
 // Pages const for HtmlWebpackPlugin
 // see more: https://github.com/vedees/webpack-template/blob/master/README.md#html-dir-folder
-const PAGES_DIR = PATHS.src
-const PAGES = fs
-  .readdirSync(PAGES_DIR)
-  .filter(fileName => fileName.endsWith('.html'))
+const PAGES_DIR = `${PATHS.src}/pug/pages/`
+const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'))
 
 module.exports = {
   externals: {
@@ -54,24 +54,28 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.pug$/,
+        oneOf: [
+          // this applies to <template lang="pug"> in Vue components
+          // {
+          //   resourceQuery: /^\?vue/,
+          //   use: ['pug-plain-loader']
+          // },
+          // this applies to pug imports inside JavaScript
+          {
+            use: ['pug-loader']
+          }
+        ]
+      },
+      {
         // JavaScript
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: '/node_modules/'
       },
       {
-        // Vue
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loader: {
-            scss: 'vue-style-loader!css-loader!sass-loader'
-          }
-        }
-      },
-      {
         // Fonts
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]'
@@ -79,7 +83,7 @@ module.exports = {
       },
       {
         // images / icons
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]'
@@ -133,15 +137,16 @@ module.exports = {
     alias: {
       '~': PATHS.src, // Example: import Dog from "~/assets/img/dog.jpg"
       '@': `${PATHS.src}/js`, // Example: import Sort from "@/utils/sort.js"
-      vue$: 'vue/dist/vue.js'
+      // vue$: 'vue/dist/vue.js'
     }
   },
   plugins: [
     // Vue loader
-    new VueLoaderPlugin(),
+    // new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: `${PATHS.assets}css/[name].[contenthash].css`
     }),
+    new HtmlWebpackInlineSVGPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         // Images:
@@ -161,7 +166,6 @@ module.exports = {
         }
       ]
     }),
-
     /*
       Automatic creation any html pages (Don't forget to RERUN dev server!)
       See more:
@@ -169,12 +173,9 @@ module.exports = {
       Best way to create pages:
       https://github.com/vedees/webpack-template/blob/master/README.md#third-method-best
     */
-    ...PAGES.map(
-      page =>
-        new HtmlWebpackPlugin({
-          template: `${PAGES_DIR}/${page}`,
-          filename: `./${page}`
-        })
-    )
+    ...PAGES.map(page => new HtmlWebpackPlugin({
+      template: `${PAGES_DIR}/${page}`,
+      filename: `./${page.replace(/\.pug/,'.html')}`
+    }))
   ]
 }
